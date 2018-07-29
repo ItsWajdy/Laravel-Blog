@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Post;
 use Session;
 
@@ -47,8 +48,7 @@ class PostController extends Controller
 
         $post->save();
 
-        Session::flash('message', 'Your post was saved!');
-
+        Session::flash('message', 'Your Post Was Saved!');
         return redirect('/posts/' . $post->id);
     }
 
@@ -70,9 +70,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        dd('edit: ' . $id);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -82,9 +82,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        if (Input::get('cancel')) return $this->show($post);
+
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $post->title = request('title');
+        $post->body  = request('body');
+
+        Session::flash('message', 'Your Post Was Updated!');
+
+        $post->update();
+        return redirect('/posts/' . $post->id);
     }
 
     /**
