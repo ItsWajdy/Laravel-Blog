@@ -25,7 +25,11 @@
                         <a href="/posts/{{$post->id}}/edit" class="btn btn-primary btn-block">Edit</a>
                     </div>
                     <div class="col-sm-6">
-                        <a href="#" class="btn btn-danger btn-block">Delete</a>
+                        <form onsubmit="return confirm('Are You Sure You Want To Delete This Post?');" action="/posts/{{ $post->id }}" method="POST" >                            
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                            <input type="submit" class="btn btn-danger btn-block" value="Delete" />
+                        </form>
                     </div>
                 </div>
             </div>
