@@ -44,6 +44,10 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="text-center">
+                <?php echo $posts->links(); ?>
+            </div>
         </div>
     </div>
 @endsection
