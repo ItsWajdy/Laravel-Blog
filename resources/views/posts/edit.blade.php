@@ -12,6 +12,11 @@
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" name="title" required value="{{ $post->title }}">
             </div>
+
+            <div class="form-group">
+                <label for="title">Slug</label>
+                <input type="text" class="form-control" id="slug" name="slug" required value="{{ $post->slug }}">
+            </div>
             
             <div class="form-group">
                 <label for="body">Body</label>

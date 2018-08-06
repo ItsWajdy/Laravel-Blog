@@ -12,9 +12,15 @@
         <div class="col-md-4">
             <div class="well">
                 <dl class="dl-horizontal">
+                    <dt>URL:</dt>
+                    <dd><a href = "{{ url('blog/'.$post->slug) }}">{{ '/blog/'.$post->slug }}</a></dd>
+                </dl>
+
+                <dl class="dl-horizontal">
                     <dt>Created At:</dt>
                     <dd>{{ $post->created_at->diffForHumans() }}</dd>
-
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>Last Updated:</dt>
                     <dd>{{ $post->updated_at->diffForHumans() }}</dd>
                 </dl>

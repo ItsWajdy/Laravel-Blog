@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PagesController;
 
+Route::get('/blog/{slug}', 'BlogController@getSingle')->where('slug', '[\w\d\-\_]+')->name('blog.single');
+
 Route::get('/', 'PagesController@getIndex');
 Route::get('/about', 'PagesController@getAbout');
 Route::get('/contact', 'PagesController@getContact');

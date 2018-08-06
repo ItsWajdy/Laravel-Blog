@@ -37,13 +37,14 @@ class PostController extends Controller
      */
     public function store(Request $request) {
         $this->validate(request(), [
-            'title' => 'required',
+            'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body'  => 'required'
         ]);
 
         $post = new Post();
-
         $post->title = request('title');
+        $post->slug = request('slug');
         $post->body = request('body');
 
         $post->save();
@@ -86,17 +87,26 @@ class PostController extends Controller
     {
         if (Input::get('cancel')) return $this->show($post);
 
-        $this->validate(request(), [
-            'title' => 'required',
-            'body' => 'required'
-        ]);
+        if (request('slug') === $post->slug) {
+            $this->validate(request(), [
+                'title' => 'required',
+                'body' => 'required'
+            ]);
+        } else {
+            $this->validate(request(), [
+                'title' => 'required',
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'body' => 'required'
+            ]);
+        }
 
         $post->title = request('title');
+        $post->slug = request('slug');
         $post->body  = request('body');
 
-        Session::flash('message', 'Your Post Was Updated!');
-
         $post->update();
+
+        Session::flash('message', 'Your Post Was Updated!');        
         return redirect('/posts/' . $post->id);
     }
 
