@@ -3,12 +3,13 @@
 use App\Http\Controllers\PagesController;
 
 Route::get('/blog/{slug}', 'BlogController@getSingle')->where('slug', '[\w\d\-\_]+')->name('blog.single');
+Route::get('/blog', 'BlogController@getIndex')->name('blog.index');
 
 Route::get('/', 'PagesController@getIndex');
 Route::get('/about', 'PagesController@getAbout');
 Route::get('/contact', 'PagesController@getContact');
 
-Route::get('/posts', 'PostController@index');
+Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::post('/posts', 'PostController@store');
 Route::get('/posts/create', 'PostController@create')->name('createPost');
 Route::get('/posts/{post}', 'PostController@show');
