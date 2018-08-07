@@ -19,3 +19,7 @@ Route::delete('/posts/{post}', 'PostController@destroy');
 
 // This single line can substitute all the requests to '/posts'
 // Route::resource('posts', 'PostController');
+
+Auth::routes();
+
+Route::get('/home', 'PagesController@getIndex')->name('home');
