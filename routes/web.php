@@ -22,4 +22,7 @@ Route::delete('/posts/{post}', 'PostController@destroy');
 
 Auth::routes();
 
+// DEV ROUTE
+Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::get('/home', 'PagesController@getIndex')->name('home');
