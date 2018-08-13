@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Post;
+use App\Category;
 use Session;
 
 class PostController extends Controller
@@ -30,7 +31,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -43,12 +45,14 @@ class PostController extends Controller
         $this->validate(request(), [
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category_id' => 'required|integer',
             'body'  => 'required'
         ]);
 
         $post = new Post();
         $post->title = request('title');
         $post->slug = request('slug');
+        $post->category_id = request('category_id');
         $post->body = request('body');
 
         $post->save();
@@ -77,7 +81,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('posts.edit', compact(['post', 'categories']));
     }
 
     /**
@@ -94,18 +99,21 @@ class PostController extends Controller
         if (request('slug') === $post->slug) {
             $this->validate(request(), [
                 'title' => 'required',
+                'category_id' => 'required|integer',
                 'body' => 'required'
             ]);
         } else {
             $this->validate(request(), [
                 'title' => 'required',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'category_id' => 'required|integer',
                 'body' => 'required'
             ]);
         }
 
         $post->title = request('title');
         $post->slug = request('slug');
+        $post->category_id = request('category_id');
         $post->body  = request('body');
 
         $post->update();
