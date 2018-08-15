@@ -27,5 +27,6 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 // RESOURCE ROUTES
 Route::resource('categories', 'CategoryController');
+Route::resource('tags', 'TagController');
 
 Route::get('/home', 'PagesController@getIndex')->name('home');

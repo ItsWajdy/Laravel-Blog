@@ -2,6 +2,10 @@
 
 @section('title', '| Edit Post')
 
+@section('head_content')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+@endsection
+
 @section('content')
 <div class="row">
     <form action="/posts/{{ $post->id }}" method="POST">
@@ -23,6 +27,15 @@
                 <select name="category_id" id="category_id" class="form-control">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">Tag</label>
+                <select name="tags[]" id="tags" class="js-example-basic-multiple form-control" multiple="multiple">
+                    @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -56,4 +69,14 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('script_content')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+        $('.js-example-basic-multiple').select2().val({{ json_encode($post->tags()->allRelatedIds()) }}).trigger('change');
+    </script>
 @endsection
