@@ -12,7 +12,7 @@ Route::get('/contact', 'PagesController@getContact');
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::post('/posts', 'PostController@store');
 Route::get('/posts/create', 'PostController@create')->name('createPost');
-Route::get('/posts/{post}', 'PostController@show');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 Route::put('/posts/{post}', 'PostController@update');
 Route::get('/posts/{post}/edit', 'PostController@edit');
 Route::delete('/posts/{post}', 'PostController@destroy');
