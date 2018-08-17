@@ -50,7 +50,11 @@ class TagController extends Controller
         return redirect()->route('tags.show', $tag->id);
     }
     
-    public function destroy() {
-        
+    public function destroy(Tag $tag) {
+        $tag->posts()->detach();     // Removes any reference to this tag from the many-to-many post_tag table
+        $tag->delete();
+
+        Session::flash('message', 'Tag Deleted');
+        return redirect()->route('tags.index');
     }
 }

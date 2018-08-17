@@ -10,6 +10,13 @@
         <div class="col-md-4">
             <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-primary pull-right" style="margin-top:30px">Edit</a>
         </div>
+        <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-danger pull-right" name="delete" value="Delete"/>
+            </div>
+        </form>
 
         <div class="row">
             <div class="col-md-12">

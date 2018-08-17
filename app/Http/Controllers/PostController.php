@@ -137,6 +137,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->detach();     // Removes any reference to this post from the many-to-many post_tag table
         $post->delete();
         
         Session::flash('message', 'Post Deleted!');
