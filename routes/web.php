@@ -8,6 +8,7 @@ Route::get('/blog', 'BlogController@getIndex')->name('blog.index');
 Route::get('/', 'PagesController@getIndex');
 Route::get('/about', 'PagesController@getAbout');
 Route::get('/contact', 'PagesController@getContact');
+Route::post('/contact', 'PagesController@postContact');
 
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::post('/posts', 'PostController@store');
