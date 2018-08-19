@@ -18,6 +18,8 @@ Route::put('/posts/{post}', 'PostController@update');
 Route::get('/posts/{post}/edit', 'PostController@edit');
 Route::delete('/posts/{post}', 'PostController@destroy');
 
+Route::post('/comments/{post_id}', 'CommentsController@store');
+
 // This single line can substitute all the requests to '/posts'
 // Route::resource('posts', 'PostController');
 
