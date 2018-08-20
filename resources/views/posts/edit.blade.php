@@ -3,7 +3,30 @@
 @section('title', '| Edit Post')
 
 @section('head_content')
+    {{-- Tag Selector Scripts --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    {{-- WYSIWYG Editor Scripts --}}
+    {{-- 
+        
+
+
+        WYSIWYG EXPOSES THE SITE TO SOME SECURITY ISSUES
+        HTML TAGS RUNNING MALIGNANT CODE COULD BE RUN ON THE SITE
+        SEE WAYS TO FIX THIS BEFORE ADDING WYSIWYG EDITORS
+        https://www.youtube.com/watch?v=_md2zRrPAhA
+        
+        
+
+    --}}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>
+        tinymce.init({ 
+            selector: "textarea", 
+            plugins: "code textcolor colorpicker link",
+            menubar: false
+        });
+    </script>
 @endsection
 
 @section('content')

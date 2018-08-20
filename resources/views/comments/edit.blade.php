@@ -2,18 +2,6 @@
 
 @section('title', '| Edit Comment')
 
-@section('head_content')
-    {{-- WYSIWYG Editor Scripts --}}
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>
-        tinymce.init({ 
-            selector: "textarea", 
-            plugins: "code textcolor colorpicker link",
-            menubar: false
-        });
-    </script>
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
