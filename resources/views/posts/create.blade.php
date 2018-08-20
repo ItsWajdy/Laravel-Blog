@@ -3,7 +3,18 @@
 @section('title', '| Create Post')
 
 @section('head_content')
+    {{-- Tag Selector Scripts --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    {{-- WYSIWYG Editor Scripts --}}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>
+        tinymce.init({ 
+            selector: "textarea", 
+            plugins: "code textcolor colorpicker link",
+            menubar: false
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -44,7 +55,7 @@
         
                 <div class="form-group">
                     <label for="body">Body</label>
-                    <textarea name="body" name="body" class="form-control" required></textarea>
+                    <textarea name="body" name="body" class="form-control"></textarea>
                 </div>
         
                 <div class="form-group">
