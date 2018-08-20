@@ -13,7 +13,9 @@
             </div>
 
             <hr>
-            <p class="lead">{{ $post->body }}</p>   
+            {{-- {!! !!} <- This Ensures That The HTML Code From The Database Is Run On Screen --}}
+            {{-- {!! !!} <- Only Used For The WYSIWYG Editor --}}
+            <p class="lead">{!! $post->body !!}</p>   
             
             <div class="backend-comments" style="margin-top: 50px">
                 <h3>Comments <small>{{ $post->comments()->count() }} total</small></h3>

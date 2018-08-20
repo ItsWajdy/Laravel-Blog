@@ -31,7 +31,10 @@
                             <th>{{ $post->id }}</th>
                             <td>{{ $post->title }}</td>
                             <td> 
-                                {{ substr($post->body, 0, 50) }}{{ strlen($post->body) > 50 ? "..." : "" }}
+                                {{-- strip_tags(str) Strips str From All HTML Tags --}}
+                                {{-- Used To Display Output From The WYSIWYG Editor --}}
+                                {{ substr(strip_tags($post->body), 0, 50) }}{{ strlen(strip_tags($post->body)) > 50 ? "..." : "" }}
+                                
                                 {{-- @if (strlen($post->body) > 50)
                                     {{ substr($post->body, 0, 50).'...' }}
                                 @else

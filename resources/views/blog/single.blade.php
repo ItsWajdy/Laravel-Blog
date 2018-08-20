@@ -6,7 +6,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>{{ $post->title }}</h1>
-            <p>{{ $post->body }}</p>
+
+            {{-- {!! !!} <- This Ensures That The HTML Code From The Database Is Run On Screen --}}
+            {{-- {!! !!} <- Only Used For The WYSIWYG Editor --}}
+            <p>{!! $post->body !!}</p>
 
             <hr>
 

@@ -19,7 +19,10 @@
             @foreach ($posts as $post)
                 <div class="post">
                     <h3>{{ $post->title }}</h3>
-                    <p>{{ substr($post->body, 0, 300) }}{{ strlen($post->body) ? "..." : "" }}</p>
+                    
+                    {{-- strip_tags(str) Strips str From All HTML Tags --}}
+                    {{-- Used To Display Output From The WYSIWYG Editor --}}
+                    <p>{{ substr(strip_tags($post->body), 0, 300) }}{{ strlen(strip_tags($post->body)) ? "..." : "" }}</p>
                     <a href="/blog/{{ $post->slug }}", class="btn btn-primary">Read More</a>
                 </div>
 
